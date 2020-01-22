@@ -20,26 +20,30 @@ export const featureReducer = (state = initialState, action)=>{
 switch(action.type){
     case 'ADD_FEATURE':
         return {
-            ...state, 
-            car: {...state.car ,
-            features: state.car.features.includes(action.payload) ? [...state.car.features] : [...state.car.features, action.payload]
-        }
-    }
+            car:  {
+                ...state.car,
+                features: [
+                {   ...state.car.features,
+                 id: action.payload.id,
+                name: action.payload.name,
+            price: action.payload.price }
+                ]
+             }
+    } 
 
-case 'GET_TOTAL':
-    return{
+// case 'GET_TOTAL':
+//     return{
         
-    }
+//     }
 
-case 'REMOVE_FEATURE':
-    return{
-        ...state, 
-        car: {
-            ...state.car, 
-            features: state.car.features.ftiler((car => car.id !== action.payload.id))
-        }
+// case 'REMOVE_FEATURE':
+//     return{
+//         car: {
+//             ...state.car, 
+//             features: state.car.features.ftiler((car => car.id !== action.payload.id))
+//         }
 
-    }
+//     }
 
     default:
         return state;
