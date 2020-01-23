@@ -1,4 +1,5 @@
 const initialState = {
+    //set intial data state
     additionalPrice: 0,
     car: {
       price: 26395,
@@ -27,17 +28,18 @@ export const featureReducer = (state = initialState, action) => {
                         id: action.payload.id,
                         name: action.payload.name,
                         price: action.payload.price
-                    }]
+                    }] //spread in original state. then spread car state, then features state for add feature action
                 }
             };
       
 
 case 'REMOVE_FEATURE':
     return{
+        ...state,
         car: {
             ...state.car, 
-            features: state.car.features.ftiler((car => car.id !== action.payload.id))
-        }
+            features: state.car.features.filter((car => car.id !== action.payload.id))
+        } //spread in oiginal state. then spread car state for pic/info, then let feature data = featues state. filter through features by id & add action for removal to be opposite what is equal to feat id.
 
     }
 
