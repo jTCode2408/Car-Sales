@@ -2,7 +2,7 @@ const initialState = {
     //set intial data state
     additionalPrice: 0,
     car: {
-      price: 26395,
+      price: '',
       name: '2019 Ford Mustang',
       image:
         'https://cdn.motor1.com/images/mgl/0AN2V/s1/2019-ford-mustang-bullitt.jpg',
@@ -22,6 +22,7 @@ export const featureReducer = (state = initialState, action) => {
         case 'ADD_FEATURE':
             return {
                 ...state,
+                additionalPrice: state.additionalPrice + action.payload.price,
                 car: {
                     ...state.car,
                     features: [...state.car.features, {
@@ -33,19 +34,23 @@ export const featureReducer = (state = initialState, action) => {
             };
       
 
-case 'REMOVE_FEATURE':
-    return{
+case 'REMOVE_FEATURE': 
+    return {
         ...state,
+        additionalPrice: state.additionalPrice - action.payload.price,
         car: {
-            ...state.car, 
+            ...state.car,
             features: state.car.features.filter((car => car.id !== action.payload.id))
+            
         } //spread in oiginal state. then spread car state for pic/info, then let feature data = featues state. filter through features by id & add action for removal to be opposite what is equal to feat id.
 
-    }
+    };
+        
 
     default:
         return state;
 }
+
 
 }
 

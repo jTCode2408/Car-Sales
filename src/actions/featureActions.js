@@ -2,7 +2,6 @@
 
 export const buyItem = item => {
     console.log('this is ADD item', item);
-
     return {
       type: 'ADD_FEATURE',
       payload: item
@@ -15,3 +14,4 @@ export const removeFeature = item => {
       payload: item
     }
 };
+
